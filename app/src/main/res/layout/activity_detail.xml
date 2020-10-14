@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity"
+    android:orientation="vertical"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
+                android:paddingBottom="7dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="50dp"
+                    tools:src="@drawable/user1" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_avatar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    tools:text="Jake Wharton" />
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_alignStart="@+id/tv_name"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="-2.5dp"
+                    android:textColor="#5B5B5B"
+                    android:textSize="15sp"
+                    tools:text="Jake Wharton" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_username"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="6dp">
+
+                    <Button
+                        android:id="@+id/btn_follower"
+                        style="@style/follow"
+                        android:background="@drawable/follow"
+                        android:drawableLeft="@drawable/ic_follower"
+                        tools:text="56K" />
+
+                    <Button
+                        android:id="@+id/btn_following"
+                        style="@style/follow"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/follow"
+                        android:drawableLeft="@drawable/ic_following"
+                        tools:text="12" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="41dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="41dp">
+
+                <TableRow android:paddingTop="5dp">
+
+                    <ImageView
+                        style="@style/icon"
+                        android:src="@drawable/ic_company" />
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        style="@style/label"
+                        tools:text="Google, Inc." />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="5dp">
+
+                    <ImageView
+                        style="@style/icon"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/tv_location"
+                        style="@style/label"
+                        tools:text="Pittsburgh, PA, USA" />
+                </TableRow>
+
+                <TableRow android:paddingTop="5dp">
+
+                    <ImageView
+                        style="@style/icon"
+                        android:src="@drawable/ic_repo" />
+
+                    <TextView
+                        android:id="@+id/tv_repo"
+                        style="@style/label"
+                        tools:text="102 Repository" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
