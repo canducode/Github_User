@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.UserFragment"
+    android:background="#EDEDED">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_below="@+id/img_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:textSize="24sp"
+                android:textColor="@android:color/black"
+                tools:text="Excel Jemmy Saputra" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-2.5dp"
+                android:textSize="15sp"
+                android:textColor="@color/gray_dark"
+                tools:text="canducode" />
+
+            <LinearLayout
+                android:id="@+id/layout_follow"
+                android:layout_below="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_follower"
+                    style="@style/followStyle"
+                    app:icon="@drawable/ic_follower"
+                    tools:text="56"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_following"
+                    style="@style/followStyle"
+                    android:layout_marginStart="5dp"
+                    app:icon="@drawable/ic_following"
+                    tools:text="12" />
+
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/table_info"
+                android:layout_below="@id/layout_follow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="9dp"
+                android:paddingLeft="41dp"
+                android:paddingTop="13dp"
+                android:paddingRight="41dp"
+                android:paddingBottom="13dp"
+                android:background="@drawable/shape_back_tab">
+
+                <TableRow android:paddingTop="5dp">
+
+                    <ImageView
+                        style="@style/icon"
+                        android:src="@drawable/ic_company"
+                        android:contentDescription="@string/company" />
+
+                    <TextView
+                        android:id="@+id/tv_company"
+                        style="@style/label"
+                        tools:text="Google, Inc." />
+                </TableRow>
+
+                <TableRow android:layout_marginTop="5dp">
+
+                    <ImageView
+                        style="@style/icon"
+                        android:src="@drawable/ic_location"
+                        android:contentDescription="@string/cd_location" />
+
+                    <TextView
+                        android:id="@+id/tv_location"
+                        style="@style/label"
+                        tools:text="Pittsburgh, PA, USA" />
+                </TableRow>
+
+                <TableRow android:paddingTop="5dp">
+
+                    <ImageView
+                        style="@style/icon"
+                        android:src="@drawable/ic_repo"
+                        android:contentDescription="@string/cd_resository"/>
+
+                    <TextView
+                        android:id="@+id/tv_repo"
+                        style="@style/label"
+                        tools:text="102 Repository" />
+                </TableRow>
+            </TableLayout>
+
+</RelativeLayout>

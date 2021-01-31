@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="company">Company</string>
+    <string name="search_hint">Enter keyword</string>
+    <string name="search">Search</string>
+    <string name="welcome">Welcome</string>
+    <string name="user">User</string>
+    <string name="follower">Followers</string>
+    <string name="following">Following</string>
+    <string name="cd_resository">Repository</string>
+    <string name="cd_location">Location</string>
+    <string name="reminder_message">Hi friend, let\'s find a project partner in Github User</string>
+</resources>

@@ -1,12 +1,16 @@
-package com.submission.githubuser
+package com.submission.githubuser.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.submission.githubuser.R
 
 class SplashActivity : AppCompatActivity() {
-    private val SPLASH_TIME_OUT: Long = 3000
+
+    companion object {
+        const val SPLASH_TIME_OUT: Long = 3000
+    }
 
     @Suppress("DEPRECATION")
     val handler = Handler()
