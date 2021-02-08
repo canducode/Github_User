@@ -7,7 +7,7 @@
         android:key="@string/key_reminder"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="Reminder"
-        app:iconSpaceReserved="false"/>
+        android:title="Reminder at 9:00 AM"
+        app:icon="@drawable/ic_baseline_notifications"/>
 
 </PreferenceScreen>

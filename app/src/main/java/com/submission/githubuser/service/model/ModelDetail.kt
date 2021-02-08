@@ -24,7 +24,6 @@ class ModelDetail : ViewModel() {
                     call: Call<ResponseDetail>,
                     response: Response<ResponseDetail>
                 ) {
-                    Log.d("Info", "Success")
                     dataDetail.postValue(response.body())
                 }
             })

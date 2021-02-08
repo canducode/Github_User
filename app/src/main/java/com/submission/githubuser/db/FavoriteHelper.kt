@@ -1,13 +1,11 @@
 package com.submission.githubuser.db
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.submission.githubuser.db.DatabaseContract.UserColumns.Companion.TABLE_NAME
 import com.submission.githubuser.db.DatabaseContract.UserColumns.Companion.USERNAME
-import com.submission.githubuser.db.DatabaseContract.UserColumns.Companion.ID
 import java.sql.SQLException
 
 class FavoriteHelper(context: Context) {
@@ -15,6 +13,11 @@ class FavoriteHelper(context: Context) {
         private lateinit var database: SQLiteDatabase
         private lateinit var databaseHelper: DatabaseHelper
         private const val DATABASE_TABLE = TABLE_NAME
+        private var INSTANCE: FavoriteHelper? = null
+        fun getInstance(context: Context): FavoriteHelper =
+            INSTANCE ?: synchronized( this) {
+                INSTANCE ?: FavoriteHelper(context)
+            }
     }
 
     init {
@@ -33,12 +36,11 @@ class FavoriteHelper(context: Context) {
     }
 
     fun queryAll(): Cursor? {
-        return database.query(DATABASE_TABLE,null,null,null,null,null,"$ID ASC")
+        return database.rawQuery("SELECT * FROM $DATABASE_TABLE", null)
     }
 
-    @SuppressLint("Recycle")
-    fun checkByUsername(username: String) : Boolean {
-        return database.rawQuery("SELECT * FROM $DATABASE_TABLE WHERE USERNAME = '$username'", null).count != 0
+    fun checkByUsername(username: String) : Cursor? {
+        return database.rawQuery("SELECT * FROM $DATABASE_TABLE WHERE USERNAME = '$username'", null)
     }
 
     fun insert(values: ContentValues?): Long {

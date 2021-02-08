@@ -2,28 +2,30 @@ package com.submission.githubuser.ui.detail
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.submission.githubuser.R
 import com.submission.githubuser.databinding.FragmentUserBinding
+import com.submission.githubuser.db.DatabaseContract.UserColumns.Companion.CONTENT_URI
 import com.submission.githubuser.db.DatabaseContract.UserColumns.Companion.URL_AVATAR
 import com.submission.githubuser.db.DatabaseContract.UserColumns.Companion.USERNAME
-import com.submission.githubuser.db.FavoriteHelper
 import com.submission.githubuser.service.model.ModelDetail
 import com.submission.githubuser.service.response.ResponseDetail
 
 class UserFragment : Fragment() {
     private var _binding: FragmentUserBinding? = null
     private val binding get() = _binding!!
+    private lateinit var uriWithId: Uri
 
-    private lateinit var favoriteHelper: FavoriteHelper
     private lateinit var dataDetail: ResponseDetail
     private var favorite = false
 
@@ -48,8 +50,6 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteHelper = FavoriteHelper(requireContext())
-        favoriteHelper.open()
 
         val username = activity?.intent?.getStringExtra(DetailActivity.EXTRA_USERNAME).toString()
 
@@ -58,7 +58,7 @@ class UserFragment : Fragment() {
         binding.shimmerViewContainer.startShimmer()
 
         modelDetail.getDetail().observe(viewLifecycleOwner, {
-            if (it.login != null) {
+            if (it?.login != null) {
                 dataDetail = it
                 setUI()
             }
@@ -69,7 +69,7 @@ class UserFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "Recycle")
     private fun setUI() {
         binding.layoutDetail.apply {
 
@@ -92,9 +92,12 @@ class UserFragment : Fragment() {
             btnFavorite.isEnabled = true
         }
 
-        if (favoriteHelper.checkByUsername(dataDetail.login!!)){
+        uriWithId = Uri.parse(CONTENT_URI.toString() + "/" + dataDetail.login!!)
+        val cursor = context?.contentResolver?.query(uriWithId, null, null, null, null)
+        if (cursor?.count != 0) {
             favorite = true
-            binding.btnFavorite.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.ic_favorite, null))}
+            binding.btnFavorite.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.ic_favorite, null))
+        }
     }
 
     private fun setStateFavorite() {
@@ -104,15 +107,10 @@ class UserFragment : Fragment() {
             val values = ContentValues()
             values.put(USERNAME, dataDetail.login)
             values.put(URL_AVATAR, dataDetail.avatar_url)
-            favoriteHelper.insert(values)
+            context?.contentResolver?.insert(CONTENT_URI, values)
         } else {
             binding.btnFavorite.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.ic_favorite_border, null))
-            favoriteHelper.deleteByUsername(dataDetail.login.toString())
+            context?.contentResolver?.delete(uriWithId, null, null)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        favoriteHelper.close()
     }
 }

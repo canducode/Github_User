@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 adapter.setData(it)
                 showLoading(false)
+                binding.tvWelcome.visibility = View.GONE
             }
         })
 

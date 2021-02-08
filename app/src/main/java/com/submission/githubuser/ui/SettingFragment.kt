@@ -13,7 +13,7 @@ class SettingFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPr
     }
 
     private lateinit var reminderPreference: SwitchPreference
-    private lateinit var REMINDER: String
+    private lateinit var redminder: String
     private lateinit var alarmReceiver: AlarmReceiver
 
     override fun onCreatePreferences(p0: Bundle?, p1: String?) {
@@ -24,18 +24,18 @@ class SettingFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPr
     }
 
     private fun init() {
-        REMINDER = resources.getString(R.string.key_reminder)
-        reminderPreference = findPreference<SwitchPreference>(REMINDER) as SwitchPreference
+        redminder = resources.getString(R.string.key_reminder)
+        reminderPreference = findPreference<SwitchPreference>(redminder) as SwitchPreference
     }
 
     private fun setSummaries() {
         val sh = preferenceManager.sharedPreferences
-        reminderPreference.isChecked = sh.getBoolean(REMINDER, DEFAULT_VALUE)
+        reminderPreference.isChecked = sh.getBoolean(redminder, DEFAULT_VALUE)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
-        if (key == REMINDER) {
-            if (sharedPreferences.getBoolean(REMINDER, DEFAULT_VALUE)) {
+        if (key == redminder) {
+            if (sharedPreferences.getBoolean(redminder, DEFAULT_VALUE)) {
                 alarmReceiver.setRepeatingReminder(this.context, getString(R.string.reminder_message))
             } else {
                 alarmReceiver.cancelReminder(this.context)

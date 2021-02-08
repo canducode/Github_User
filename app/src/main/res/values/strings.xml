@@ -17,4 +17,7 @@
     <string name="key_reminder" translatable="false">reminder</string>
 
     <string name="reminder_message">Hai sobat, temukan partner project di Github User</string>
+    <string name="folower_button">Folower Button</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
 </resources>

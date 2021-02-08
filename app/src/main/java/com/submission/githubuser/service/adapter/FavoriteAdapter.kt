@@ -12,13 +12,12 @@ import com.submission.githubuser.service.response.ItemsFavorite
 import com.submission.githubuser.ui.detail.DetailActivity
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
-    private val lists = ArrayList<ItemsFavorite>()
-
-    fun setFavorite(items: ArrayList<ItemsFavorite>?) {
-        if (items == null) return
-        lists.clear()
-        lists.addAll(items)
-    }
+    var lists = ArrayList<ItemsFavorite>()
+        set(lists) {
+            this.lists.clear()
+            this.lists.addAll(lists)
+            notifyDataSetChanged()
+        }
 
     class FavoriteViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ItemsFavorite) {

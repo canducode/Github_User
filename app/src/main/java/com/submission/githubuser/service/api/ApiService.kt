@@ -14,7 +14,7 @@ const val token = "5845a467ff4e03585fb13bd36f7519ee9b29075b"
 interface ApiService {
 
     @GET("search/users")
-    @Headers("Authorization: $token")
+    @Headers("Authorization: token $token")
     fun getSearch(
         @Query("q")username: String
     ) : Call<ResponseSearch>
@@ -25,13 +25,13 @@ interface ApiService {
     ) : Call<ResponseDetail>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: $token")
+    @Headers("Authorization: token  $token")
     fun getFollowers(
         @Path("username")username: String
     ) : Call<ArrayList<ItemsFollow>?>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: $token")
+    @Headers("Authorization: token  $token")
     fun getFollowing(
         @Path("username")username: String
     ) : Call<ArrayList<ItemsFollow>?>

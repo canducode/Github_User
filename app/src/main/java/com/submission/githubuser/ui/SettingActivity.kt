@@ -11,11 +11,11 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
         supportFragmentManager.beginTransaction().add(R.id.setting_layout, SettingFragment()).commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Settings"
     }
 
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return super.onSupportNavigateUp()
     }
-
 }
